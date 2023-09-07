@@ -1,0 +1,199 @@
+{% load static %}
+{% load leaflet_tags %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    {% leaflet_js %}
+    {% leaflet_css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'reset.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'font-awesome.min.css' %}">
+    <title>My Web Page</title>
+    <style>
+
+        /* Global styles */
+        html {
+            height: 100%;
+        }
+        body {
+            display: flex;
+            flex-direction: row;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+        #mapid {
+            height: 100%;
+        }
+
+        /* Map container */
+        #map-container {
+            flex: 1;
+            height: 100%;
+        }
+
+        /* Buttons container */
+        #buttons-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 30%;
+            height: 96.2%;
+            padding-top: 2%;
+            background-color: #3f51b5;
+            color: white;
+        }
+
+        #searchForm {
+            margin-bottom: 2%;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 1%;
+            font-weight: bold;
+        }
+
+        input[type="text"] {
+            padding: 2%;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            margin-bottom: 1%;
+        }
+
+        input[type="submit"] {
+            background-color: white;
+            color: #3f51b5;
+            border: none;
+            border-radius: 10px;
+            padding: 1% 2%;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button {
+            margin-bottom: 1%;
+            padding: 1% 2%;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #recordButton {
+            background-color: white;
+            color: #3f51b5;
+        }
+
+        #input{
+
+            height: 20%;
+        }
+
+        /* Results container */
+        #results-container {
+            flex: 1;
+            height: 80%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 2%;
+        }
+
+        /* Alternatives list */
+        #alternativesList {
+            flex: 1;
+            margin-right: 2%;
+            padding: 0;
+
+            height: 100%;
+            list-style: none;
+            overflow: auto;
+        }
+
+        #alternativesList li {
+            padding: 1%;
+            background-color: #f5f5f5;
+            color: #3f51b5;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 1%;
+
+            text-align: center;
+        }
+
+        #alternativesList li:hover {
+            background-color: #e0e0e0;
+        }
+
+        /* Steps list */
+        #stepsList {
+            height: 100%;
+            overflow-y: scroll;
+            flex: 1;
+            padding: 0;
+            list-style: none;
+        }
+
+        #stepsList li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1%;
+        }
+
+        .step-marker {
+            width: 30px;
+            height: 30px;
+            background-color: #8894d8;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            font-size: 16px;
+            margin-right: 1%;
+        }
+
+    </style>
+</head>
+<body>
+
+
+    <div id="buttons-container">
+        <div id="input">
+            <form id="searchForm">
+                <label for="start-input">Départ:</label>
+                <input type="text" id="start" name="start">
+
+                <label for="end-input">Arrivée:</label>
+                <input type="text" id="end" name="end">
+                
+            </form>
+            <button id="search">Trouver un itinéraire</button>
+            <button id="recordButton">
+                <i class="fa fa-microphone"></i>
+            </button>
+        </div>
+        <div id="results-container">
+            <ul id="alternativesList">
+            </ul>
+            <ul id="stepsList">
+            </ul>
+        </div>
+    </div>
+
+    
+    
+    <div id="map-container">
+        {% leaflet_map "mapid" %}
+    </div>
+    <script src="{% static 'index.js' %}"></script> 
+    <script src="{% static 'audio-recording.js' %}"></script> 
+</body>
+</html>

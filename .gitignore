@@ -1,0 +1,15 @@
+speech_to_text
+/*.txt
+/*.wav
+# Django #
+*.log
+*.pot
+*.pyc
+*.geojson
+__pycache__
+venv/
+*.csv
+*.dbf
+*.prj
+*.shp
+*.shx
